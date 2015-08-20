@@ -4,6 +4,7 @@ package models;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
@@ -19,6 +20,8 @@ public class Random extends Model {
 	//
 	private static Finder<String, Random> finder = new Finder<String, Random>(Random.class);
 	
+	@Id
+	private String id;
 	private String sequence;
     private String lane;
     private String seed;
@@ -26,7 +29,8 @@ public class Random extends Model {
     
     public Random() {};
     
-    public Random(String sequence, String name, String lane, String seed) {
+    public Random(String id, String sequence, String name, String lane, String seed) {
+    	this.id = id;
     	this.sequence = sequence;
     	this.name = name;
     	this.lane = lane;
@@ -36,6 +40,7 @@ public class Random extends Model {
     public static Random findByValues(String sequence, String seed, String lane) {
     	return finder.where().eq("sequence", sequence).eq("seed", seed).eq("lane", lane).findUnique();
     }
+
 	public String getSequence() {
 		return sequence;
 	}
@@ -59,6 +64,14 @@ public class Random extends Model {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public static List<Random> findBySequence(String sequence) {

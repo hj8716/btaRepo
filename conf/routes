@@ -10,3 +10,6 @@ GET     /assets/*file                                          controllers.Asset
                                                                
 GET     /random/:sequence/:laneCount                           controllers.RandomApp.index(sequence: String, laneCount: String)
 POST    /random                                          	   controllers.RandomApp.register()
+
+GET     /random/admin/:sequence/:laneCount                      controllers.RandomApp.indexAdmin(sequence: String, laneCount: String)
+POST    /random/admin                                          	 controllers.RandomApp.update()
