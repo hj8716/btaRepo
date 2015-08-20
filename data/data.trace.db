@@ -1,3 +1,12 @@
 08-04 22:54:38 jdbc[4]: exception
 org.h2.jdbc.JdbcSQLException: Table "PLAY_EVOLUTIONS" not found; SQL statement:
 select id, hash, apply_script, revert_script, state, last_problem from play_evolutions where state like 'applying_%' [42102-187]
+08-20 16:51:52 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "UPDATE RANDOM SET SEQUENCE=?, LANE=?, SEED=?, NAME=? WHERE  [*]"; expected "NOT, EXISTS, INTERSECTS"; SQL statement:
+update random set sequence=?, lane=?, seed=?, name=? where  [42001-187]
+08-20 16:58:04 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "UPDATE RANDOM SET SEQUENCE=?, LANE=?, SEED=?, NAME=? WHERE  [*]"; expected "NOT, EXISTS, INTERSECTS"; SQL statement:
+update random set sequence=?, lane=?, seed=?, name=? where  [42001-187]
+08-20 16:59:30 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "UPDATE RANDOM SET SEQUENCE=?, LANE=?, SEED=?, NAME=? WHERE  [*]"; expected "NOT, EXISTS, INTERSECTS"; SQL statement:
+update random set sequence=?, lane=?, seed=?, name=? where  [42001-187]
