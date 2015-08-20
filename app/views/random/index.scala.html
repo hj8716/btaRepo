@@ -1,0 +1,84 @@
+@(sequence: String, laneSize: String, result: Map[String, String])
+
+@import helper._
+
+
+@main("레인배정") {
+    
+    <h3>레인배정</h3>
+        <form name="" action="@routes.RandomApp.register" method="post">
+        	<input type="hidden" name="sequence" value="@sequence" />
+        	<input type="hidden" name="laneSize" value="@laneSize" />
+            <label>시드 </label>
+            <select name="seed">
+            	<option value="1">1</option>
+            	<option value="2">2</option>
+            	<option value="3">3</option>
+            	<option value="4">4</option>
+            </select>
+            <br />
+            <label>이름 </label>
+            <input type="text" name="name"/><br />
+            <input type="submit" class="btn" value="등록"/> 
+        </form>
+        <br/>
+        <table>
+            <tr class="title">
+                <th></th>
+                <th>1번레인</th>
+                <th>2번레인</th>
+                <th>3번레인</th>
+                <th>4번레인</th>
+                <th>5번레인</th>
+                <th>6번레인</th>
+                <th>7번레인</th>
+                <th>8번레인</th>
+            </tr>
+            <tr>
+                <th>1번시드</th>
+                <td>@result.get("1_1")</td>
+                <td>@result.get("1_2")</td>
+                <td>@result.get("1_3")</td>
+                <td>@result.get("1_4")</td>
+                <td>@result.get("1_5")</td>
+                <td>@result.get("1_6")</td>
+                <td>@result.get("1_7")</td>
+                <td>@result.get("1_8")</td>
+            </tr>
+            <tr>
+                <th>2번시드</th>
+                <td>@result.get("2_1")</td>
+                <td>@result.get("2_2")</td>
+                <td>@result.get("2_3")</td>
+                <td>@result.get("2_4")</td>
+                <td>@result.get("2_5")</td>
+                <td>@result.get("2_6")</td>
+                <td>@result.get("2_7")</td>
+                <td>@result.get("2_8")</td>
+            </tr>
+            <tr>
+                <th>3번시드</th>
+                <td>@result.get("3_1")</td>
+                <td>@result.get("3_2")</td>
+                <td>@result.get("3_3")</td>
+                <td>@result.get("3_4")</td>
+                <td>@result.get("3_5")</td>
+                <td>@result.get("3_6")</td>
+                <td>@result.get("3_7")</td>
+                <td>@result.get("3_8")</td>
+            </tr>
+            <tr>
+                <th>4번시드</th>
+                <td>@result.get("4_1")</td>
+                <td>@result.get("4_2")</td>
+                <td>@result.get("4_3")</td>
+                <td>@result.get("4_4")</td>
+                <td>@result.get("4_5")</td>
+                <td>@result.get("4_6")</td>
+                <td>@result.get("4_7")</td>
+                <td>@result.get("4_8")</td>
+            </tr>
+        </table>
+	<script type="text/javascript">
+	</script>
+}
