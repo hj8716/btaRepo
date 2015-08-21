@@ -51,15 +51,15 @@ public class RandomApp extends Controller {
 		if(StringUtils.isNullOrEmpty(name)) {
 			return badRequest("이름을 입력하세요.");
 		}
-		
-		if(Integer.parseInt(laneSize) <= Random.findCountBySequenceAndSeed(sequence, seed)){
-	    	return badRequest("레인이 모두 배정되었습니다.");
-	    }
-		
+
 		while(true){
 		    int lane = ((int)(Math.random() * Integer.parseInt(laneSize)))  + 1;
 		    
 		    if(Random.findByValues(sequence, seed, String.valueOf(lane)) == null) {
+		    	
+		    	if(Integer.parseInt(laneSize) <= Random.findCountBySequenceAndSeed(sequence, seed)){
+			    	return badRequest("레인이 모두 배정되었습니다.");
+			    }
 		    	
 		    	String id = sequence + "_" + seed + "_" + String.valueOf(lane);
 				new Random(id, sequence, name, String.valueOf(lane), seed).insert();
@@ -102,10 +102,6 @@ public class RandomApp extends Controller {
 		if(oldRandom == null) {
 			return badRequest("입력된 정보가 없습니다.");
 	    }
-		
-		if(Integer.parseInt(laneSize) <= Random.findCountBySequenceAndSeed(sequence, seed)){
-	    	return badRequest("레인이 모두 배정되었습니다.");
-	    }
 
 		while(true){
 			
@@ -114,6 +110,10 @@ public class RandomApp extends Controller {
 		    Random random = Random.findByValues(sequence, seed, String.valueOf(newLane));
 		    
 		    if(random == null) {
+		    	
+		    	if(Integer.parseInt(laneSize) <= Random.findCountBySequenceAndSeed(sequence, seed)){
+			    	return badRequest("레인이 모두 배정되었습니다.");
+			    }
 		    	
 		    	oldRandom.setSeed(seed);
 		    	oldRandom.setLane(String.valueOf(newLane));
@@ -127,4 +127,5 @@ public class RandomApp extends Controller {
 		
     	return redirect(routes.RandomApp.indexAdmin(sequence, laneSize));
     }
+
 }
