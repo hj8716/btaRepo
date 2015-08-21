@@ -6,48 +6,75 @@
 
 @main("레인배정_관리자모드") {
 
-    <h3>레인배정_관리자모드</h3>
-        <form name="" action="@routes.RandomApp.update" method="post">
-        	<input type="hidden" name="sequence" value="@sequence" />
-        	<input type="hidden" name="laneSize" value="@laneSize" />
-            <label>old시드 </label>
-            <select name="oldSeed" style="width:100px">
-            	<option value="1">1</option>
-            	<option value="2">2</option>
-            	<option value="3">3</option>
-            	<option value="4">4</option>
-            </select>
-            <label>new시드 </label>
-            <select name="seed" style="width:100px">
-            	<option value="1">1</option>
-            	<option value="2">2</option>
-            	<option value="3">3</option>
-            	<option value="4">4</option>
-            </select>
-            <br />
-            <label>old레인 </label>
-            <input type="text" name="lane"/><br />
-            <label>이     름 </label>
-            <input type="text" name="name"/><br />
-            <input type="submit" class="btn" value="수정"/> 
-        </form>
-        <br/>
-        <table>
-        	<tr class="title">
-				<th></th>
+	<div class="jumbotron">
+		<div class="cntHeader">
+	    	<h1 class="tTit">PS300 B.C</h1>
+	    </div>
+		<div class="atit">
+			<h3>레인배정_관리자모드</h3>
+		</div>
+	</div>
+    <form name="" action="@routes.RandomApp.update" method="post">
+    	<input type="hidden" name="sequence" value="@sequence" />
+    	<input type="hidden" name="laneSize" value="@laneSize" />
+        <span class="lbl">이전 시드 :</span>
+        <select name="oldSeed" id="oldSeed" style="width:150px">
+        	<option value="1">1</option>
+        	<option value="2">2</option>
+        	<option value="3">3</option>
+        	<option value="4">4</option>
+        </select>
+        <br />
+        <span class="lbl">이전 레인 :</span>
+        <input type="text" name="lane" id="lane" style="width:150px"/>
+        <br />
+        <span class="lbl">신규 시드 :</span>
+        <select name="seed" style="width:150px">
+        	<option value="1">1</option>
+        	<option value="2">2</option>
+        	<option value="3">3</option>
+        	<option value="4">4</option>
+        </select>
+        <br />
+        <span class="lbl">이&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;름 :</span>
+        <input type="text" name="name" style="width:150px"/><br />
+        <input type="submit" class="btn" value="수정"/>
+        <input type="button" class="btn" value="삭제" onclick="javascipt:removeLane()"/>  
+    </form>
+    <br/>
+    <table>
+    	<tr class="title">
+			<th></th>
                	@for(i <- 1 to laneSaizeByInteger()) {
                 	<th>@i 레인</th>
                 }
-            </tr>
-			@for(i <- 1 to 4) {
-				<tr>
-	                <th>@i 시드</th>
-	                @for(j <- 1 to laneSaizeByInteger()) {
-	                	<td>@result.get(i + "_" + j)</td>
-	                }
-                </tr>
-			}
+        </tr>
+		@for(i <- 1 to 4) {
+			<tr>
+                <th>@i 시드</th>
+                @for(j <- 1 to laneSaizeByInteger()) {
+                	<td>@result.get(i + "_" + j)</td>
+                }
+               </tr>
+		}
         </table>
+        
+        <form name="" id="removeForm" action="@routes.RandomApp.delete" method="post">
+			<input type="hidden" id="removeSeed" name="removeSeed" />
+			<input type="hidden" id="removeLane" name="removeLane" />
+			<input type="hidden" name="removeSequence" value="@sequence"/>
+			<input type="hidden" name="laneSize" value="@laneSize"/>
+		</form>
 	<script type="text/javascript">
+		function removeLane() {
+			if(!confirm('레인배정을 삭제할까요?')) {
+				return;
+			}
+			
+			$('#removeSeed').val($('#oldSeed').val());
+			$('#removeLane').val($('#lane').val());
+
+			$('#removeForm').submit();
+		}
 	</script>
 }

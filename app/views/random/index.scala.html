@@ -5,40 +5,46 @@
 @import helper._
 
 @main("레인배정") {
-
-    <h3>레인배정</h3>
-        <form name="" action="@routes.RandomApp.register" method="post">
-        	<input type="hidden" name="sequence" value="@sequence" />
-        	<input type="hidden" name="laneSize" value="@laneSize" />
-            <label>시드 </label>
-            <select name="seed" style="width:100px">
-            	<option value="1">1</option>
-            	<option value="2">2</option>
-            	<option value="3">3</option>
-            	<option value="4">4</option>
-            </select>
-            <br />
-            <label>이름 </label>
-            <input type="text" name="name"/><br />
-            <input type="submit" class="btn" value="등록"/> 
-        </form>
-        <br/>
-        <table>
-        	<tr class="title">
-				<th></th>
-               	@for(i <- 1 to laneSaizeByInteger()) {
-                	<th>@i 레인</th>
-                }
-            </tr>
-			@for(i <- 1 to 4) {
-				<tr>
-	                <th>@i 시드</th>
-	                @for(j <- 1 to laneSaizeByInteger()) {
-	                	<td>@result.get(i + "_" + j)</td>
-	                }
-                </tr>
-			}
-        </table>
+	<div class="jumbotron">
+		<div class="cntHeader">
+	    	<h1 class="tTit">PS300 B.C</h1>
+	    </div>
+		<div class="atit">
+			<h3>레인배정</h3>
+		</div>
+	</div>
+    <form name="" action="@routes.RandomApp.register" method="post">
+	   	<input type="hidden" name="sequence" value="@sequence" />
+	   	<input type="hidden" name="laneSize" value="@laneSize" />
+	   	<span class="lbl">시드: </span>
+	       <select name="seed" style="width:150px">
+	       	<option value="1">1</option>
+	       	<option value="2">2</option>
+	       	<option value="3">3</option>
+	       	<option value="4">4</option>
+	       </select>
+	       <br />
+	    <span class="lbl">이름: </span>
+	    <input type="text" name="name" style="width:150px"/><br />
+	    <input type="submit" class="btn" value="등록"/> 
+     </form>
+     <br/>
+     <table>
+     	<tr class="title">
+			<th></th>
+            	@for(i <- 1 to laneSaizeByInteger()) {
+             		<th>@i 레인</th>
+             	}
+         </tr>
+				@for(i <- 1 to 4) {
+					<tr>
+		            	<th>@i 시드</th>
+			              @for(j <- 1 to laneSaizeByInteger()) {
+			              	<td>@result.get(i + "_" + j)</td>
+			              }
+				   </tr>
+				}
+     </table>
 	<script type="text/javascript">
 	</script>
 }
