@@ -28,6 +28,17 @@ public class RandomApp extends Controller {
     	return ok(index.render(sequence, laneSize, result));
     }
     
+    //
+    public Result indexView(String sequence, String laneSize) {
+    	List<Random> randoms = Random.findBySequence(sequence);
+		Map<String, String> result = new HashMap<String, String>();
+    	for (Random random : randoms) {
+			result.put(random.getSeed() + "_" + random.getLane(), random.getName());
+		}
+    	
+    	return ok(index_view.render(sequence, laneSize, result));
+    }
+    
 	//
     public Result indexAdmin(String sequence, String laneSize) {
     	List<Random> randoms = Random.findBySequence(sequence);

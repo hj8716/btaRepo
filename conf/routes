@@ -9,6 +9,7 @@ GET     /                           controllers.Application.index()
 GET     /assets/*file                                          controllers.Assets.versioned(path="/public", file: Asset)
                                                                
 GET     /random/:sequence/:laneCount                           controllers.RandomApp.index(sequence: String, laneCount: String)
+GET     /random/view/:sequence/:laneCount                       controllers.RandomApp.indexView(sequence: String, laneCount: String)
 POST    /random                                          	   controllers.RandomApp.register()
 
 GET     /random/admin/:sequence/:laneCount                      controllers.RandomApp.indexAdmin(sequence: String, laneCount: String)
